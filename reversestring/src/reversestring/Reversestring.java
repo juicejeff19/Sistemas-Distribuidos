@@ -16,6 +16,7 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 public class Reversestring implements Serializable{
     String frase1, frase2;
+    int caso;
     ArrayList<Reversestring> frases;
     
     public Reversestring(){
@@ -50,20 +51,31 @@ public class Reversestring implements Serializable{
     public void setFrases(ArrayList<Reversestring> frases) {
         this.frases = frases;
     }
+
+    public int getCaso() {
+        return caso;
+    }
+
+    public void setCaso(int caso) {
+        this.caso = caso;
+    }
+    
     
     @Override
     public String toString() {
-        return ("\n"+"************"+"\n"+"Case#xd: "+this.getFrase2());
+        return ("\n"+"************"+"\n"+"Case #"+this.getCaso()+": "+this.getFrase2());
    }
    
-    public void recuperar(String frase2){
+    public void recuperar(String frase2, int caso){
        setFrase2(frase2);
+        setCaso(caso);
        agregar();
    }
     
     public void agregar(){
        Reversestring frasesita = new Reversestring();
        frasesita.setFrase2(frase2);
+       frasesita.setCaso(caso+frases.size());
        frases.add(frasesita);
    }
     
@@ -161,7 +173,7 @@ public class Reversestring implements Serializable{
        switch (opcion) {
            case 1:
                interf in = new interf();
-               recuperar(frase2);
+               recuperar(frase2, caso);
                serializar();
            case 2:
                leer();
